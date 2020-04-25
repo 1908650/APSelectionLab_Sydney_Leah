@@ -29,15 +29,15 @@ public class Sorts {
     public Sorts() {
         int size = 50;
         list = new int[size];
-        for (int i = 0; i < list.length; i++)
+        for (int i = 0; i < list.length; i++) {
             list[i] = (int) (Math.random() * size) + 1;
-
+        }
         blist = list.clone();
         this.BubbleSort();
         ilist = list.clone();
         this.InsertionSort();
-        // slist = list.clone();
-        // this.SelectionSort();
+        slist = list.clone();
+        this.SelectionSort();
     }
 
     public String toString() {
@@ -57,6 +57,7 @@ public class Sorts {
                 System.out.println("Insertions Sort -- " + " Operations: " + (this.icompares + this.iswaps)
                         + " Compares: " + this.icompares + " Swaps: " + this.iswaps);
                 list = this.ilist;
+                break;
 
             case Selection:
             default:
@@ -123,26 +124,47 @@ public class Sorts {
         return ilist;
     }
 
-    // private int[] SelectionSort() {
-    // for (int j = 0; j < slist.length - 1; j++) {
-    // int iMinimum = j;
-    // for (int i = j + 1; i < slist.length; i++) {
-    // this.icompares++; // compare counter
-    // if (slist[i] < slist[iMinimum]) {
-    // iMinimum = i;
-    // }
-    // }
-    // if (iMinimum != j) {
-    // swap(slist[j], slist[iMinimum]);
-    // // analytics
-    // this.sswaps++; // swap counter
-    // }
-    // }
-    // return slist;
-    // }
+    private int[] SelectionSort() {
+        for (int j = 0; j < slist.length - 1; j++) {
+            int iMinimum = j;
+            for (int i = j + 1; i < slist.length; i++) {
+                this.scompares++; // compare counter
+                if (slist[i] < slist[iMinimum]) {
+                    iMinimum = i;
+                }
+            }
+            if (iMinimum != j) {
+                int swap = slist[iMinimum];
+                slist[iMinimum] = slist[j];
+                slist[j] = swap;
+
+                // analytics
+                this.sswaps++; // swap counter
+            }
+        }
+        return slist;
+    }
 
     /**
-     *
+     * Bubble sort is not the most efficient and rarely used outside of learning. It
+     * compares/swaps one element with the next until the largest number slowly
+     * "bubbles" to the right. From this example, this algorithm produces the
+     * greatest number of operations, comparisons, and swaps (close).
+     * 
+     * Both insertion sort and selection sort go through 2 loops, though the former
+     * loops through sorted elements to insert where numbers belong and the latter
+     * loops through unsorted elements and swaps with the minimum.
+     * 
+     * Selection sort drastically requires more comparisons. For each iteration, it
+     * must compare all elements beyond itself in order to find the minimum and swap
+     * with it (lots of comparing, less swapping). Therefore, less swapping is
+     * needed compared to insertion sort.
+     * 
+     * According to
+     * https://techdifferences.com/difference-between-insertion-sort-and-selection-sort.html
+     * insertion sort is ultimately the better method between the two as it has a
+     * O(n) complexity. On the other hand, selection sort has a best case complexity
+     * of O(n^2)
      */
     public static void main(String[] args) {
         // Original List
@@ -155,6 +177,10 @@ public class Sorts {
 
         // Insertion Sort
         is.listType = ListType.Insert;
+        System.out.println(is);
+
+        // Selection Sort
+        is.listType = ListType.Selection;
         System.out.println(is);
     }
 }
