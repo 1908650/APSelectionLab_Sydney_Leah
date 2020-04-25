@@ -36,8 +36,8 @@ public class Sorts {
         this.BubbleSort();
         ilist = list.clone();
         this.InsertionSort();
-        slist = list.clone();
-        this.SelectionSort();
+        // slist = list.clone();
+        // this.SelectionSort();
     }
 
     public String toString() {
@@ -54,7 +54,6 @@ public class Sorts {
                 list = this.blist;
                 break;
             case Insert:
-            default:
                 System.out.println("Insertions Sort -- " + " Operations: " + (this.icompares + this.iswaps)
                         + " Compares: " + this.icompares + " Swaps: " + this.iswaps);
                 list = this.ilist;
@@ -124,23 +123,23 @@ public class Sorts {
         return ilist;
     }
 
-    private int[] SelectionSort() {
-        for (int j = 0; j < slist.length - 1; j++) {
-            int iMinimum = j;
-            for (int i = j + 1; i < slist.length; i++) {
-            	this.icompares++; // compare counter
-            	if (slist[i] < slist[iMinimum]) {
-                    iMinimum = i;
-                }
-            }
-            if (iMinimum != j) {
-                swap(slist[j], slist[iMinimum]);
-             // analytics
-                this.sswaps++; // swap counter
-            }
-        }
-        return slist;
-    }
+    // private int[] SelectionSort() {
+    // for (int j = 0; j < slist.length - 1; j++) {
+    // int iMinimum = j;
+    // for (int i = j + 1; i < slist.length; i++) {
+    // this.icompares++; // compare counter
+    // if (slist[i] < slist[iMinimum]) {
+    // iMinimum = i;
+    // }
+    // }
+    // if (iMinimum != j) {
+    // swap(slist[j], slist[iMinimum]);
+    // // analytics
+    // this.sswaps++; // swap counter
+    // }
+    // }
+    // return slist;
+    // }
 
     /**
      *
